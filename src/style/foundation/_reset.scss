@@ -1,0 +1,150 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  word-wrap: inherit;
+  border: 0;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html {
+  overflow: auto;
+  line-height: 1;
+  letter-spacing: 0.15em;
+  word-wrap: break-word;
+  font-feature-settings: "palt";
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: unset;
+
+  @media only screen and
+    (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+body {
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+
+  &:visited,
+  &:focus,
+  &:active,
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+p {
+  line-height: 1.6;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+main,
+aside,
+footer,
+figure,
+figcaption,
+article,
+section {
+  display: block;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-size: 16px;
+}
+
+input {
+  background: transparent;
+  border-radius: 0;
+}
+
+button {
+  background-color: transparent;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+[type='button'],
+[type='reset'],
+[type='submit'],
+button {
+  -webkit-appearance: button;
+}
+
+[data-whatinput="mouse"] input:focus,
+[data-whatinput="mouse"] select:focus,
+[data-whatinput="mouse"] textarea:focus,
+[data-whatinput="mouse"] button:focus,
+[data-whatinput="touch"] input:focus,
+[data-whatinput="touch"] select:focus,
+[data-whatinput="touch"] textarea:focus,
+[data-whatinput="touch"] button:focus {
+  outline: none !important;
+}
+
+//  IE必ず殺すマン
+input {
+  ::-ms-clear {
+    visibility: hidden
+  }
+
+  ::-ms-reveal {
+    visibility: hidden
+  }
+}
+
+select::-ms-expand {
+  display: none;
+}

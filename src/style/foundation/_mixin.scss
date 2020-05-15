@@ -1,0 +1,12 @@
+// breakpoint
+@mixin mq($breakpoint: null, $rule: null, $substraction: false) {
+  $breakpoint: map_get($breakpoints, $breakpoint);
+
+  @if $rule == max and $substraction {
+    $breakpoint: $breakpoint - 1
+  }
+
+  @media screen and (#{$rule}-width: $breakpoint) {
+    @content;
+  }
+}
