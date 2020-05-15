@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import {
   Form,
   Button,
 } from 'react-bootstrap'
 
 import Layout from '@/layouts/default'
+import { updateAction } from '@/store/action'
+// import { RootState } from '@/store'
 
-const Home = () => {
+const Home: React.FC = () => {
+  // const currentData = useSelector((state: RootState) => state)
+  const dispatch = useDispatch()
   const [title, setTitle] = useState('')
   const [question, setQuestion] = useState('')
   const [normal, setNormal] = useState('')
@@ -29,16 +34,14 @@ const Home = () => {
     }
   }
 
-  const handleClickUpload = () => {
-    const data = {
-      title: title,
-      question: question,
-      normal: normal,
-      abnormal: abnormal,
-    }
-
-    console.log(data)
+  // 登録内容をアクションに引き渡す
+  const newData = {
+    title: title,
+    question: question,
+    normal: normal,
+    abnormal: abnormal,
   }
+  const handleIncrement = () => dispatch(updateAction(newData))
 
   return (
     <Layout title="問題登録" description="各項目を記入して登録が可能です。">
@@ -53,7 +56,6 @@ const Home = () => {
         <Form.Label className="font-weight-bold">題名</Form.Label>
         <Form.Control
           as="textarea"
-          rows="5"
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleChangeData(e.target.value, 'question')}
         />
       </Form.Group>
@@ -61,7 +63,6 @@ const Home = () => {
         <Form.Label className="font-weight-bold">一般回答</Form.Label>
         <Form.Control
           as="textarea"
-          rows="5"
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleChangeData(e.target.value, 'normal')}
         />
       </Form.Group>
@@ -69,13 +70,12 @@ const Home = () => {
         <Form.Label className="font-weight-bold">サイコパス回答</Form.Label>
         <Form.Control
           as="textarea"
-          rows="5"
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleChangeData(e.target.value, 'abnormal')}
         />
       </Form.Group>
       <Button
         variant="primary"
-        onClick={handleClickUpload}
+        onClick={handleIncrement}
       >
         登録する
       </Button>
