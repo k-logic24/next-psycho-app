@@ -8,6 +8,7 @@ export type DataProps = {
   question: string
   normal: string
   abnormal: string
+  id: string
 }
 
 // Actionの型 Actionを継承
