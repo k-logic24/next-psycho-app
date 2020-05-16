@@ -2,30 +2,22 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
 
-import { selectData } from '@/api'
 import { RootState } from '@/store'
 import { DataProps } from '@/store/types'
+import { thunkedFetch } from '@/store/action'
 import Layout from '@/layouts/default'
 
 const Edit = () => {
+  const dispatch = useDispatch()
   const currentData = useSelector<RootState, DataProps>(state => state.select)
-  const [data, setData] = useState<DataProps>({
-    title: '',
-    question: '',
-    normal: '',
-    abnormal: ''
-  })
   const router = useRouter()
   const { edit } = router.query
 
   useEffect(() => {
     if (typeof edit === 'string') {
-      // selectData(edit)
-      //   .then(res => {
-      //     setData(res)
-      //   })
+      dispatch(thunkedFetch(edit))
     }
-  }, [setData])
+  }, [thunkedFetch])
 
   return (
     <Layout>

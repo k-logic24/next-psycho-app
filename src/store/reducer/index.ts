@@ -20,7 +20,6 @@ export const updateReducer = (state = initialState, action: AddDataTypes): DataP
 export const selectReducer = (state = initialState, action: FetchDataTypes): DataProps => {
   switch (action.type) {
     case ActionTypes.fetchData:
-      console.log('通ってる？')
       return { ...state, ...action }
     default:
       return state
