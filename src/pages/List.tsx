@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import Link from 'next/link'
 import {
   ListGroup,
   Row,
@@ -10,7 +11,6 @@ import {
 import { fetchData } from '@/api'
 // import { RootState } from '@/store'
 import { DataProps } from '@/store/types'
-
 import Layout from '@/layouts/default'
 
 const List = () => {
@@ -29,11 +29,17 @@ const List = () => {
           <Row className="justify-content-between">
             <Col className="my-sm-auto" sm={6}>
               <p className="mb-sm-0">
-                {item.title}: {item.id}
+                {item.title}
               </p>
             </Col>
             <Col sm="auto">
-              <Button variant="primary">問題を見る</Button>
+              <Button className="p-0" variant="primary">
+                <Link href="/post/[id]" as={`/post/${item.id}`}>
+                  <a className="d-block w-100 py-2 px-3">
+                    問題を見る
+                  </a>
+                </Link>
+              </Button>
             </Col>
           </Row>
         </ListGroup.Item>

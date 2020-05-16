@@ -53,7 +53,7 @@ const Home: React.FC = () => {
         />
       </Form.Group>
       <Form.Group controlId="question">
-        <Form.Label className="font-weight-bold">題名</Form.Label>
+        <Form.Label className="font-weight-bold">内容</Form.Label>
         <Form.Control
           as="textarea"
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleChangeData(e.target.value, 'question')}
@@ -77,6 +77,7 @@ const Home: React.FC = () => {
         variant="primary"
         onClick={handleIncrement}
       >
+        
         登録する
       </Button>
     </Layout>

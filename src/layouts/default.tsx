@@ -6,8 +6,8 @@ import Sidebar from '@/layouts/Sidebar'
 
 type LayoutProps = {
   children: React.ReactNode
-  title: string
-  description: string
+  title?: string
+  description?: string
 }
 
 const Layout: React.FC<LayoutProps> = ({

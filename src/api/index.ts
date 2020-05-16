@@ -8,7 +8,7 @@ export const sendData = (payload: DataProps) => {
     })
 }
 
-export const fetchData = () => {
+export const fetchData = (): Promise<any> => {
   return db.collection('information')
     .get()
     .then(querySnapShot => {
@@ -29,5 +29,15 @@ export const fetchData = () => {
       })
 
       return dataArray
+    })
+}
+
+export const selectData = (id: string): Promise<any> => {
+  return db.collection('information')
+    .doc(id)
+    .get()
+    .then(result => result.data())
+    .catch(error => {
+      console.log('failed...', error)
     })
 }
