@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 import Link from 'next/link'
 import {
   ListGroup,
@@ -9,7 +8,6 @@ import {
 } from 'react-bootstrap'
 
 import { fetchData } from '@/api'
-// import { RootState } from '@/store'
 import { DataProps } from '@/store/types'
 import Layout from '@/layouts/default'
 
@@ -37,6 +35,13 @@ const List = () => {
                 <Link href="/post/[id]" as={`/post/${item.id}`}>
                   <a className="d-block w-100 py-2 px-3">
                     問題を見る
+                  </a>
+                </Link>
+              </Button>
+              <Button className="p-0 ml-2" variant="info">
+                <Link href="/edit/[id]" as={`/edit/${item.id}`}>
+                  <a className="d-block w-100 py-2 px-3">
+                    編集
                   </a>
                 </Link>
               </Button>

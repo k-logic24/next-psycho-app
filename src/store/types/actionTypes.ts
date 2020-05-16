@@ -1,3 +1,4 @@
 export const ActionTypes = {
-  updateData: "UPDATE_DATA"
+  addData: "ADD_DATA",
+  fetchData: "FETCH_DATA"
 } as const

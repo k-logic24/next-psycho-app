@@ -1,5 +1,5 @@
 import { ActionTypes } from '@/store/types/actionTypes'
-import { UpdateActionTypes, DataProps } from '@/store/types'
+import { AddDataTypes, FetchDataTypes, DataProps } from '@/store/types'
 
 const initialState: DataProps = {
   title: '',
@@ -8,9 +8,19 @@ const initialState: DataProps = {
   abnormal: '',
 }
 
-export const updateReducer = (state = initialState, action: UpdateActionTypes): DataProps => {
+export const updateReducer = (state = initialState, action: AddDataTypes): DataProps => {
   switch (action.type) {
-    case ActionTypes.updateData:
+    case ActionTypes.addData:
+      return { ...state, ...action }
+    default:
+      return state
+  }
+}
+
+export const selectReducer = (state = initialState, action: FetchDataTypes): DataProps => {
+  switch (action.type) {
+    case ActionTypes.fetchData:
+      console.log('通ってる？')
       return { ...state, ...action }
     default:
       return state

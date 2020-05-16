@@ -11,10 +11,15 @@ export type DataProps = {
   id?: string
 }
 
-// Actionの型 Actionを継承
-interface UpdateData extends Action {
-  type: typeof ActionTypes.updateData,
+interface AddDataProps extends Action {
+  type: typeof ActionTypes.addData,
   data: DataProps
 }
 
-export type UpdateActionTypes = UpdateData
+interface FetchDataProps extends Action {
+  type: typeof ActionTypes.fetchData,
+  data: DataProps
+}
+
+export type AddDataTypes = AddDataProps
+export type FetchDataTypes = FetchDataProps

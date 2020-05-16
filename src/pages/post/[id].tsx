@@ -1,37 +1,31 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { RootState } from '@/store'
 import { DataProps } from '@/store/types'
-import { selectData } from '@/api'
+import { thunkedFetch } from '@/store/action'
 import Layout from '@/layouts/default'
 
 const Id = () => {
-  const [data, setData] = useState<DataProps>({
-    title: '',
-    question: '',
-    normal: '',
-    abnormal: ''
-  })
+  const dispatch = useDispatch()
+  const currentData = useSelector<RootState, DataProps>(state => state.select)
   const router = useRouter()
   const { id } = router.query
 
   useEffect(() => {
     if (typeof id === 'string') {
-      selectData(id)
-        .then(res => {
-          console.log(res)
-          setData(res)
-        })
+      dispatch(thunkedFetch(id))
     }
-  }, [setData])
+  }, [thunkedFetch])
 
   return (
     <>
-      <Layout title={data.title}>
-        {data.question}
-        {data.normal}
-        {data.abnormal}
-        <button onClick={() => console.log(data)}>test</button>
+      <Layout title={currentData.title}>
+        {currentData.question}
+        {currentData.normal}
+        {currentData.abnormal}
+        <button onClick={() => console.log(currentData)}>test</button>
       </Layout>
     </>
   )

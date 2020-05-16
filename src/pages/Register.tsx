@@ -6,11 +6,9 @@ import {
 } from 'react-bootstrap'
 
 import Layout from '@/layouts/default'
-import { updateAction } from '@/store/action'
-// import { RootState } from '@/store'
+import { addAction } from '@/store/action'
 
 const Home: React.FC = () => {
-  // const currentData = useSelector((state: RootState) => state)
   const dispatch = useDispatch()
   const [title, setTitle] = useState('')
   const [question, setQuestion] = useState('')
@@ -41,7 +39,7 @@ const Home: React.FC = () => {
     normal: normal,
     abnormal: abnormal,
   }
-  const handleIncrement = () => dispatch(updateAction(newData))
+  const handleClickAdd = () => dispatch(addAction(newData))
 
   return (
     <Layout title="問題登録" description="各項目を記入して登録が可能です。">
@@ -75,9 +73,8 @@ const Home: React.FC = () => {
       </Form.Group>
       <Button
         variant="primary"
-        onClick={handleIncrement}
+        onClick={handleClickAdd}
       >
-        
         登録する
       </Button>
     </Layout>
