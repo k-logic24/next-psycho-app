@@ -1,9 +1,9 @@
-import { ActionTypes } from '@/store/types/actionTypes'
+import { ActionTypes } from '@/types'
 
 import {
   AddDataTypes,
   DataProps,
-} from '@/store/types'
+} from '@/types'
 import { sendData, selectData } from '@/api'
 
 export const addAction = (payload: DataProps): AddDataTypes => {

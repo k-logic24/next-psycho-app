@@ -1,0 +1,10 @@
+.list {
+  &-group-item {
+    border: none;
+    border-bottom: 1px solid #ddd;
+
+    &:last-of-type {
+      border-bottom: 0;
+    }
+  }
+}

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { RootState } from '@/store'
-import { DataProps } from '@/store/types'
+import { DataProps } from '@/types'
 import { thunkedFetch } from '@/store/action'
 import Layout from '@/layouts/default'
 

@@ -1,5 +1,5 @@
-import { ActionTypes } from '@/store/types/actionTypes'
-import { AddDataTypes, FetchDataTypes, DataProps } from '@/store/types'
+import { ActionTypes } from '@/types'
+import { AddDataTypes, FetchDataTypes, DataProps } from '@/types'
 
 const initialState: DataProps = {
   title: '',

@@ -1,11 +1,18 @@
 import db from '@/firebase/firebaseInit'
-import { DataProps } from '@/store/types'
+import { DataProps,  NewDataProps } from '@/types'
 
 export const sendData = (payload: DataProps) => {
   db.collection('information')
     .add({
       ...payload
     })
+}
+
+export const editData = (payload: NewDataProps) => {
+  db
+    .collection('information')
+    .doc(`${payload.id}`)
+    .update(payload)
 }
 
 export const fetchData = (): Promise<any> => {
