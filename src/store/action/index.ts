@@ -1,18 +1,5 @@
 import { ActionTypes } from '@/types'
-
-import {
-  AddDataTypes,
-  DataProps,
-} from '@/types'
-import { sendData, selectData } from '@/api'
-
-export const addAction = (payload: DataProps): AddDataTypes => {
-  sendData(payload)
-  return {
-    type: ActionTypes.addData,
-    data: payload,
-  }
-}
+import { selectData } from '@/api'
 
 export const fetchAction = payload => (
   { type: ActionTypes.fetchData, ...payload }

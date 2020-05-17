@@ -1,7 +1,7 @@
 import db from '@/firebase/firebaseInit'
 import { DataProps,  NewDataProps } from '@/types'
 
-export const sendData = (payload: DataProps) => {
+export const addData = (payload: DataProps) => {
   db.collection('information')
     .add({
       ...payload

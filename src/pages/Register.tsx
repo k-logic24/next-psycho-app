@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
 
 import Layout from '@/layouts/default'
-import { addAction } from '@/store/action'
 import RegisterForm from '@/components/RegisterForm'
 import { FormProps } from '@/types'
+import { addData } from '@/api'
 
 const Register: React.FC<FormProps> = () => {
-  const dispatch = useDispatch()
   const [title, setTitle] = useState('')
   const [question, setQuestion] = useState('')
   const [normal, setNormal] = useState('')
@@ -21,9 +19,9 @@ const Register: React.FC<FormProps> = () => {
     abnormal: abnormal,
   }
   const handleClickAdd = () => {
-    alert('登録しました')
+    addData(newData)
 
-    dispatch(addAction(newData))
+    alert('登録しました')
   }
 
   return (

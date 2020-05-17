@@ -34,12 +34,12 @@ const Edit = () => {
     if (question !== '') newData.question = question
     if (normal !== '') newData.normal = normal
     if (abnormal !== '') newData.abnormal = abnormal
-
     editData(newData)
-    
+
     if (typeof id === 'string') {
       dispatch(thunkedFetch(id))
     }
+    
     alert('更新しました')
   }
 

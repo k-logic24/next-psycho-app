@@ -25,7 +25,7 @@ export type DataProps = {
   question: string
   normal: string
   abnormal: string
-  id?: string | string[]
+  id?: string
 }
 
 export type NewDataProps = {
