@@ -1,17 +1,20 @@
-import { ActionTypes, FetchDataTypes, DataProps } from '@/types'
+import { ActionTypes, FetchDataTypes, DataProps } from "@/types";
 
 const initialState: DataProps = {
-  title: '',
-  question: '',
-  normal: '',
-  abnormal: '',
-}
+  title: "",
+  question: "",
+  normal: "",
+  abnormal: "",
+};
 
-export const selectReducer = (state = initialState, action: FetchDataTypes): DataProps => {
+export const selectReducer = (
+  state = initialState,
+  action: FetchDataTypes
+): DataProps => {
   switch (action.type) {
     case ActionTypes.fetchData:
-      return { ...state, ...action }
+      return { ...state, ...action };
     default:
-      return state
+      return state;
   }
-}
+};

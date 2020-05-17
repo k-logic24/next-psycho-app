@@ -1,12 +1,9 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import {
-  Form,
-  Button,
-} from 'react-bootstrap'
+import React from "react";
+import { useSelector } from "react-redux";
+import { Form, Button } from "react-bootstrap";
 
-import { DataProps, FormProps } from '@/types'
-import { RootState } from '@/store'
+import { DataProps, FormProps } from "@/types";
+import { RootState } from "@/store";
 
 const EditForm: React.FC<FormProps> = ({
   setTitle,
@@ -15,7 +12,9 @@ const EditForm: React.FC<FormProps> = ({
   setAbnormal,
   handleClickEdit,
 }) => {
-  const currentData = useSelector<RootState, DataProps>(state => state.select)
+  const currentData = useSelector<RootState, DataProps>(
+    (state) => state.select
+  );
 
   return (
     <>
@@ -25,7 +24,8 @@ const EditForm: React.FC<FormProps> = ({
           type="text"
           defaultValue={currentData.title}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setTitle(e.target.value)}
+            setTitle(e.target.value)
+          }
         />
       </Form.Group>
       <Form.Group controlId="question">
@@ -34,7 +34,8 @@ const EditForm: React.FC<FormProps> = ({
           as="textarea"
           defaultValue={currentData.question}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-            setQuestion(e.target.value)}
+            setQuestion(e.target.value)
+          }
         />
       </Form.Group>
       <Form.Group controlId="normal">
@@ -43,7 +44,8 @@ const EditForm: React.FC<FormProps> = ({
           as="textarea"
           defaultValue={currentData.normal}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-            setNormal(e.target.value)}
+            setNormal(e.target.value)
+          }
         />
       </Form.Group>
       <Form.Group controlId="abnormal">
@@ -52,17 +54,15 @@ const EditForm: React.FC<FormProps> = ({
           as="textarea"
           defaultValue={currentData.abnormal}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-            setAbnormal(e.target.value)}
+            setAbnormal(e.target.value)
+          }
         />
       </Form.Group>
-      <Button
-        variant="primary"
-        onClick={handleClickEdit}
-      >
-      完了
+      <Button variant="primary" onClick={handleClickEdit}>
+        完了
       </Button>
     </>
-  )
-}
+  );
+};
 
-export default EditForm
+export default EditForm;
