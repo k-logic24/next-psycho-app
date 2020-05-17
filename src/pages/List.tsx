@@ -10,14 +10,26 @@ import {
 import { fetchData } from '@/api'
 import { DataProps } from '@/types'
 import Layout from '@/layouts/default'
+import DeleteModal from '@/components/DeleteModal'
 
 const List = () => {
-  const [data, setData] = useState<object[]>([])
+  const [targetData, setTargetData] = useState<any>(null)
+  const [modalShow, setModalShow] = useState(false)
+  const [data, setData] = useState<DataProps[]>([])
 
   useEffect(() => {
     fetchData()
       .then(res => setData(res))
   }, [setData])
+
+  // 削除ボタンで対象を絞る　idがいいかな
+  // ローカルステートで絞ったアイテムをモーダルにいれる
+  const handleClickModal = (target) => {
+    const filterData = data.filter(item => item.id === target.value)
+    setTargetData(filterData)
+    setModalShow(true)
+  }
+
 
   return (
     <Layout title="問題一覧" description={"問題から一般回答とサイコパスの思考を知ることができます。"}>
@@ -47,11 +59,22 @@ const List = () => {
                   </Link>
                 </Button>
                 <Button
+                  value={item.id}
                   className="ml-2 py-2 px-3"
                   variant="danger"
+                  onClick={
+                    (e: React.FormEvent<HTMLButtonElement>) =>
+                      handleClickModal(e.target)}
                 >
                   削除
                 </Button>
+
+                <DeleteModal
+                  targetData={targetData}
+                  show={modalShow}
+                  setModalShow={setModalShow}
+                  setData={setData}
+                />
               </Col>
             </Row>
           </ListGroup.Item>

@@ -46,3 +46,11 @@ export type FormProps = {
   handleClickAdd?: () => void
   handleClickEdit?: () => void
 }
+
+// modal
+export type ModalProps = {
+  targetData: DataProps[]
+  show: boolean
+  setModalShow: React.Dispatch<React.SetStateAction<boolean>>
+  setData: React.Dispatch<React.SetStateAction<DataProps[]>>
+}

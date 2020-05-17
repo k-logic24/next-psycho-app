@@ -8,6 +8,12 @@ export const addData = (payload: DataProps) => {
     })
 }
 
+export const deleteData = (id: string) => {
+  db.collection('information')
+    .doc(id)
+    .delete()
+}
+
 export const editData = (payload: NewDataProps) => {
   db
     .collection('information')
