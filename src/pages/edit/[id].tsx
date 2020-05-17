@@ -39,8 +39,9 @@ const Edit = () => {
     if (typeof id === 'string') {
       dispatch(thunkedFetch(id))
     }
-    
     alert('更新しました')
+
+    router.push('/list')
   }
 
   return (

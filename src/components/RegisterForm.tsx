@@ -19,6 +19,8 @@ const RegisterForm: React.FC<FormProps> = ({
         <Form.Label className="font-weight-bold">タイトル</Form.Label>
         <Form.Control
           type="text"
+          name="title"
+          defaultValue=""
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setTitle(e.target.value)}
         />
@@ -27,6 +29,8 @@ const RegisterForm: React.FC<FormProps> = ({
         <Form.Label className="font-weight-bold">内容</Form.Label>
         <Form.Control
           as="textarea"
+          name="question"
+          defaultValue=""
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             setQuestion(e.target.value)}
         />
@@ -35,6 +39,8 @@ const RegisterForm: React.FC<FormProps> = ({
         <Form.Label className="font-weight-bold">一般回答</Form.Label>
         <Form.Control
           as="textarea"
+          name="normal"
+          defaultValue=""
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             setNormal(e.target.value)}
         />
@@ -43,6 +49,8 @@ const RegisterForm: React.FC<FormProps> = ({
         <Form.Label className="font-weight-bold">サイコパス回答</Form.Label>
         <Form.Control
           as="textarea"
+          name="abnormal"
+          defaultValue=""
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             setAbnormal(e.target.value)}
         />

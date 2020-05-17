@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useRouter } from 'next/router'
 
 import Layout from '@/layouts/default'
 import RegisterForm from '@/components/RegisterForm'
@@ -6,6 +7,7 @@ import { FormProps } from '@/types'
 import { addData } from '@/api'
 
 const Register: React.FC<FormProps> = () => {
+  const router = useRouter()
   const [title, setTitle] = useState('')
   const [question, setQuestion] = useState('')
   const [normal, setNormal] = useState('')
@@ -20,8 +22,9 @@ const Register: React.FC<FormProps> = () => {
   }
   const handleClickAdd = () => {
     addData(newData)
-
     alert('登録しました')
+
+    router.push('/list')
   }
 
   return (
