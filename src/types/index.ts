@@ -1,10 +1,10 @@
 // redux
-import { Action } from "redux";
+import { Action } from 'redux'
 
 export const ActionTypes = {
-  addData: "ADD_DATA",
-  fetchData: "FETCH_DATA",
-} as const;
+  addData: 'ADD_DATA',
+  fetchData: 'FETCH_DATA',
+} as const
 
 interface AddDataProps extends Action {
   type: typeof ActionTypes.addData;
@@ -32,6 +32,7 @@ export type NewDataProps = {
   question?: string;
   normal?: string;
   abnormal?: string;
+  // TODO: これはやばい
   id: string | string[] | undefined;
 };
 

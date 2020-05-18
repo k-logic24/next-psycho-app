@@ -1,55 +1,55 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useRouter } from "next/router";
+import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useRouter } from 'next/router'
 
-import { DataProps, NewDataProps } from "@/types";
-import { RootState } from "@/store";
-import { thunkedFetch } from "@/store/action";
-import Layout from "@/layouts/default";
-import EditForm from "@/components/EditForm";
-import { editData } from "@/api";
+import { DataProps, NewDataProps } from '@/types'
+import { RootState } from '@/store'
+import { thunkedFetch } from '@/store/action'
+import Layout from '@/layouts/default'
+import EditForm from '@/components/EditForm'
+import { editData } from '@/api'
 
 const Edit = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const currentData = useSelector<RootState, DataProps>(
     (state) => state.select
-  );
-  const router = useRouter();
-  const { id } = router.query;
+  )
+  const router = useRouter()
+  const { id } = router.query
 
-  const [title, setTitle] = useState("");
-  const [question, setQuestion] = useState("");
-  const [normal, setNormal] = useState("");
-  const [abnormal, setAbnormal] = useState("");
+  const [title, setTitle] = useState('')
+  const [question, setQuestion] = useState('')
+  const [normal, setNormal] = useState('')
+  const [abnormal, setAbnormal] = useState('')
 
   useEffect(() => {
-    if (typeof id === "string") {
-      dispatch(thunkedFetch(id));
+    if (typeof id === 'string') {
+      dispatch(thunkedFetch(id))
     }
-  }, [thunkedFetch]);
+  }, [thunkedFetch])
 
   const handleClickEdit = async () => {
     const newData: NewDataProps = {
       id: id,
-    };
-    if (title !== "") newData.title = title;
-    if (question !== "") newData.question = question;
-    if (normal !== "") newData.normal = normal;
-    if (abnormal !== "") newData.abnormal = abnormal;
-    editData(newData);
-
-    if (typeof id === "string") {
-      dispatch(thunkedFetch(id));
     }
-    alert("更新しました");
+    if (title !== '') newData.title = title
+    if (question !== '') newData.question = question
+    if (normal !== '') newData.normal = normal
+    if (abnormal !== '') newData.abnormal = abnormal
+    editData(newData)
 
-    router.push("/list");
-  };
+    if (typeof id === 'string') {
+      dispatch(thunkedFetch(id))
+    }
+    alert('更新しました')
+
+    router.push('/list')
+  }
 
   return (
     <Layout
       title={`「${currentData.title}」の編集`}
-      description={"内容を書き換えて完了を押してください。"}
+      description={'内容を書き換えて完了を押してください。'}
     >
       <EditForm
         setTitle={setTitle}
@@ -59,7 +59,7 @@ const Edit = () => {
         handleClickEdit={handleClickEdit}
       />
     </Layout>
-  );
-};
+  )
+}
 
-export default Edit;
+export default Edit

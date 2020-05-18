@@ -1,8 +1,8 @@
-import React from "react";
-import { Container } from "react-bootstrap";
+import React from 'react'
+import { Container } from 'react-bootstrap'
 
-import Header from "@/layouts/Header";
-import Sidebar from "@/layouts/Sidebar";
+import Header from '@/layouts/Header'
+import Sidebar from '@/layouts/Sidebar'
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -21,7 +21,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title, description }) => {
         </Container>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

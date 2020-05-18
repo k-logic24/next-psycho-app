@@ -1,31 +1,31 @@
-import React, { useEffect } from "react";
-import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { RootState } from "@/store";
-import { DataProps } from "@/types";
-import { thunkedFetch } from "@/store/action";
-import Layout from "@/layouts/default";
+import { RootState } from '@/store'
+import { DataProps } from '@/types'
+import { thunkedFetch } from '@/store/action'
+import Layout from '@/layouts/default'
 
 const Id = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const currentData = useSelector<RootState, DataProps>(
     (state) => state.select
-  );
-  const router = useRouter();
-  const { id } = router.query;
+  )
+  const router = useRouter()
+  const { id } = router.query
 
   useEffect(() => {
-    if (typeof id === "string") {
-      dispatch(thunkedFetch(id));
+    if (typeof id === 'string') {
+      dispatch(thunkedFetch(id))
     }
-  }, [thunkedFetch]);
+  }, [thunkedFetch])
 
   return (
     <>
       <Layout
         title={currentData.title}
-        description={"問題をみて回答ボタンを押してください。"}
+        description={'問題をみて回答ボタンを押してください。'}
       >
         {currentData.question}
         {currentData.normal}
@@ -33,7 +33,7 @@ const Id = () => {
         <button onClick={() => console.log(currentData)}>test</button>
       </Layout>
     </>
-  );
-};
+  )
+}
 
-export default Id;
+export default Id

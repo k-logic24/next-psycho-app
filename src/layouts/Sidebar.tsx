@@ -1,8 +1,8 @@
-import React from "react";
-import { useRouter } from "next/router";
-import Link from "next/link";
+import React from 'react'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 
-import { menus } from "@/_variables";
+import { menus } from '@/_variables'
 
 type menuProps = {
   id: number;
@@ -11,7 +11,7 @@ type menuProps = {
 };
 
 const Sidebar = () => {
-  const router = useRouter();
+  const router = useRouter()
   return (
     <div className="sidebar">
       <ul className="sidebar-list">
@@ -21,8 +21,8 @@ const Sidebar = () => {
               <a
                 className={
                   router.pathname === `${item.href}`
-                    ? "sidebar-list__link active"
-                    : "sidebar-list__link"
+                    ? 'sidebar-list__link active'
+                    : 'sidebar-list__link'
                 }
               >
                 {item.title}
@@ -32,7 +32,7 @@ const Sidebar = () => {
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

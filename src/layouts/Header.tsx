@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 type HeaderProps = {
   title: string;
@@ -11,7 +11,7 @@ const Header: React.FC<HeaderProps> = ({ title, description }) => {
       <h1 className="header__ttl">{title}</h1>
       <p>{description}</p>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

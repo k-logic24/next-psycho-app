@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
+import React, { useState } from 'react'
+import { useRouter } from 'next/router'
 
-import Layout from "@/layouts/default";
-import RegisterForm from "@/components/RegisterForm";
-import { FormProps } from "@/types";
-import { addData } from "@/api";
+import Layout from '@/layouts/default'
+import RegisterForm from '@/components/RegisterForm'
+import { FormProps } from '@/types'
+import { addData } from '@/api'
 
 const Register: React.FC<FormProps> = () => {
-  const router = useRouter();
-  const [title, setTitle] = useState("");
-  const [question, setQuestion] = useState("");
-  const [normal, setNormal] = useState("");
-  const [abnormal, setAbnormal] = useState("");
+  const router = useRouter()
+  const [title, setTitle] = useState('')
+  const [question, setQuestion] = useState('')
+  const [normal, setNormal] = useState('')
+  const [abnormal, setAbnormal] = useState('')
 
   // 登録内容をアクションに引き渡す
   const newData = {
@@ -19,13 +19,13 @@ const Register: React.FC<FormProps> = () => {
     question: question,
     normal: normal,
     abnormal: abnormal,
-  };
+  }
   const handleClickAdd = () => {
-    addData(newData);
-    alert("登録しました");
+    addData(newData)
+    alert('登録しました')
 
-    router.push("/list");
-  };
+    router.push('/list')
+  }
 
   return (
     <Layout title="問題登録" description="各項目を記入して登録が可能です。">
@@ -39,7 +39,7 @@ const Register: React.FC<FormProps> = () => {
         />
       </div>
     </Layout>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

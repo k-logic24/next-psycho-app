@@ -1,29 +1,29 @@
-import db from "@/firebase/firebaseInit";
-import { DataProps, NewDataProps } from "@/types";
+import db from '@/firebase/firebaseInit'
+import { DataProps, NewDataProps } from '@/types'
 
 export const addData = (payload: DataProps) => {
-  db.collection("information").add({
+  db.collection('information').add({
     ...payload,
-  });
-};
+  })
+}
 
 export const deleteData = (id: string) => {
-  db.collection("information").doc(id).delete();
-};
+  db.collection('information').doc(id).delete()
+}
 
 export const editData = (payload: NewDataProps) => {
-  db.collection("information").doc(`${payload.id}`).update(payload);
-};
+  db.collection('information').doc(`${payload.id}`).update(payload)
+}
 
 export const fetchData = (): Promise<any> => {
   return db
-    .collection("information")
+    .collection('information')
     .get()
     .then((querySnapShot) => {
-      const dataArray: DataProps[] = [];
+      const dataArray: DataProps[] = []
 
       querySnapShot.forEach((info) => {
-        const base = info.data();
+        const base = info.data()
 
         const dataObj = {
           title: base.title,
@@ -31,22 +31,22 @@ export const fetchData = (): Promise<any> => {
           normal: base.normal,
           abnormal: base.abnormal,
           id: info.id,
-        };
+        }
 
-        dataArray.push(dataObj);
-      });
+        dataArray.push(dataObj)
+      })
 
-      return dataArray;
-    });
-};
+      return dataArray
+    })
+}
 
 export const selectData = (id: string): Promise<any> => {
   return db
-    .collection("information")
+    .collection('information')
     .doc(id)
     .get()
     .then((result) => result.data())
     .catch((error) => {
-      console.log("failed...", error);
-    });
-};
+      console.log('failed...', error)
+    })
+}

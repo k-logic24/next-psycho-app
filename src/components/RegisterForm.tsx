@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
-import { useForm } from "react-hook-form";
+import React, { useState } from 'react'
+import { Form, Button } from 'react-bootstrap'
+import { useForm } from 'react-hook-form'
 
-import { FormProps, DataProps } from "@/types";
+import { FormProps, DataProps } from '@/types'
 
 const RegisterForm: React.FC<FormProps> = ({
   setTitle,
@@ -11,28 +11,28 @@ const RegisterForm: React.FC<FormProps> = ({
   setAbnormal,
   handleClickAdd,
 }) => {
-  const [isTitleValidate, setTitleValidate] = useState(false);
-  const [isQuestionValidate, setQuestionValidate] = useState(false);
-  const [isNormalValidate, setNormalValidate] = useState(false);
-  const [isAbnormalValidate, setAbnormalValidate] = useState(false);
-  const { register, handleSubmit } = useForm<DataProps>();
+  const [isTitleValidate, setTitleValidate] = useState(false)
+  const [isQuestionValidate, setQuestionValidate] = useState(false)
+  const [isNormalValidate, setNormalValidate] = useState(false)
+  const [isAbnormalValidate, setAbnormalValidate] = useState(false)
+  const { register, handleSubmit } = useForm<DataProps>()
 
   const onSubmit = (data: DataProps) => {
     // validation
-    data.title === "" ? setTitleValidate(true) : setTitleValidate(false);
-    data.question === ""
+    data.title === '' ? setTitleValidate(true) : setTitleValidate(false)
+    data.question === ''
       ? setQuestionValidate(true)
-      : setQuestionValidate(false);
-    data.normal === "" ? setNormalValidate(true) : setNormalValidate(false);
-    data.abnormal === ""
+      : setQuestionValidate(false)
+    data.normal === '' ? setNormalValidate(true) : setNormalValidate(false)
+    data.abnormal === ''
       ? setAbnormalValidate(true)
-      : setAbnormalValidate(false);
+      : setAbnormalValidate(false)
 
     // 通ったらhandleclickadd
-    if (data.title && data.question && data.normal && data.abnormal !== "") {
-      handleClickAdd && handleClickAdd();
+    if (data.title && data.question && data.normal && data.abnormal !== '') {
+      handleClickAdd && handleClickAdd()
     }
-  };
+  }
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -108,7 +108,7 @@ const RegisterForm: React.FC<FormProps> = ({
         登録する
       </Button>
     </Form>
-  );
-};
+  )
+}
 
-export default RegisterForm;
+export default RegisterForm

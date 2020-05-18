@@ -1,9 +1,9 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Form, Button } from "react-bootstrap";
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { Form, Button } from 'react-bootstrap'
 
-import { DataProps, FormProps } from "@/types";
-import { RootState } from "@/store";
+import { DataProps, FormProps } from '@/types'
+import { RootState } from '@/store'
 
 const EditForm: React.FC<FormProps> = ({
   setTitle,
@@ -14,7 +14,7 @@ const EditForm: React.FC<FormProps> = ({
 }) => {
   const currentData = useSelector<RootState, DataProps>(
     (state) => state.select
-  );
+  )
 
   return (
     <>
@@ -62,7 +62,7 @@ const EditForm: React.FC<FormProps> = ({
         完了
       </Button>
     </>
-  );
-};
+  )
+}
 
-export default EditForm;
+export default EditForm

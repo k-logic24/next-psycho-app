@@ -1,39 +1,39 @@
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { ListGroup, Row, Col, Button } from "react-bootstrap";
+import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { ListGroup, Row, Col, Button } from 'react-bootstrap'
 
-import { fetchData } from "@/api";
-import { DataProps } from "@/types";
-import Layout from "@/layouts/default";
-import DeleteModal from "@/components/DeleteModal";
+import { fetchData } from '@/api'
+import { DataProps } from '@/types'
+import Layout from '@/layouts/default'
+import DeleteModal from '@/components/DeleteModal'
 
 const List = () => {
   const defaultValue = {
-    title: "",
-    question: "",
-    normal: "",
-    abnormal: "",
-  };
-  const [targetData, setTargetData] = useState<DataProps[]>([defaultValue]);
-  const [modalShow, setModalShow] = useState(false);
-  const [data, setData] = useState<DataProps[]>([]);
+    title: '',
+    question: '',
+    normal: '',
+    abnormal: '',
+  }
+  const [targetData, setTargetData] = useState<DataProps[]>([defaultValue])
+  const [modalShow, setModalShow] = useState(false)
+  const [data, setData] = useState<DataProps[]>([])
 
   useEffect(() => {
-    fetchData().then((res) => setData(res));
-  }, [setData]);
+    fetchData().then((res) => setData(res))
+  }, [setData])
 
   const handleClickModal = (target: EventTarget) => {
     if (target instanceof HTMLButtonElement) {
-      const filterData = data.filter((item) => item.id === target.value);
-      setTargetData(filterData);
-      setModalShow(true);
+      const filterData = data.filter((item) => item.id === target.value)
+      setTargetData(filterData)
+      setModalShow(true)
     }
-  };
+  }
 
   return (
     <Layout
       title="問題一覧"
-      description={"問題から一般回答とサイコパスの思考を知ることができます。"}
+      description={'問題から一般回答とサイコパスの思考を知ることができます。'}
     >
       <div className="content-box">
         {data.length ? (
@@ -82,7 +82,7 @@ const List = () => {
         )}
       </div>
     </Layout>
-  );
-};
+  )
+}
 
-export default List;
+export default List
