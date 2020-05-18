@@ -50,14 +50,16 @@ const Edit = () => {
     <Layout
       title={`「${currentData.title}」の編集`}
     >
-      <EditForm
-        currentData={currentData}
-        setTitle={setTitle}
-        setQuestion={setQuestion}
-        setNormal={setNormal}
-        setAbnormal={setAbnormal}
-        handleClickEdit={handleClickEdit}
-      />
+      <div className="content-box">
+        <EditForm
+          currentData={currentData}
+          setTitle={setTitle}
+          setQuestion={setQuestion}
+          setNormal={setNormal}
+          setAbnormal={setAbnormal}
+          handleClickEdit={handleClickEdit}
+        />
+       </div>
     </Layout>
   )
 }

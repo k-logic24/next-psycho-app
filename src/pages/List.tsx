@@ -30,7 +30,6 @@ const List = () => {
   const handleClickModal = (target: EventTarget) => {
     if (target instanceof HTMLButtonElement) {
       const filterData = data.filter((item) => item.id === target.value)
-      console.log(filterData)
       setTargetData(filterData)
       setModalShow(true)
     }
