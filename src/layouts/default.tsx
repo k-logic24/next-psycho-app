@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container } from 'react-bootstrap'
 
-import Header from '@/layouts/Header'
+import Title from '@/layouts/Title'
 import Sidebar from '@/layouts/Sidebar'
 
 type LayoutProps = {
-  children: React.ReactNode;
-  title: string;
-};
+  children: React.ReactNode
+  title: string
+}
 
 const Layout: React.FC<LayoutProps> = ({ children, title }) => {
   return (
@@ -15,7 +15,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
       <Sidebar />
       <div className="main">
         <Container fluid>
-          <Header title={title} />
+          <Title title={title} />
           {children}
         </Container>
       </div>

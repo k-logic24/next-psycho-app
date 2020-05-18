@@ -22,7 +22,7 @@
     }
 
     &__item {
-      width: calc(100% / 4);
+      width: calc(100% / 3);
 
       @include mq(md, min) {
         width: 100%;
@@ -31,7 +31,7 @@
 
     &__link {
       text-align: center;
-      padding: 0.5em 0;
+      padding: 1em 0;
       display: block;
       color: #fff;
       transition: all 0.3s;

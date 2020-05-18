@@ -2,10 +2,10 @@
 @import 'foundation/mixin';
 @import 'foundation/reset';
 
-@import 'layout/header';
 @import 'layout/sidebar';
 @import 'layout/main';
 
+@import 'object/component/section';
 @import 'object/component/contentBox';
 @import 'object/component/list';
 @import 'object/component/form';
