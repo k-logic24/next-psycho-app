@@ -4,7 +4,7 @@ import Layout from '@/layouts/default'
 
 const Home = () => {
   return (
-    <Layout title="ホーム" description="こちらはサイコパス診断アプリです">
+    <Layout title="ホーム">
       <p>ここになにか入れる</p>
     </Layout>
   )

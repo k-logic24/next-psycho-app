@@ -1,7 +1,7 @@
-const withSass = require('@zeit/next-sass')
+const path = require('path')
 require('dotenv').config()
 
-module.exports = withSass({
+module.exports = {
   env: {
     API_KEY: process.env.API_KEY,
     AUTH_DOMAIN: process.env.AUTH_DOMAIN,
@@ -9,7 +9,7 @@ module.exports = withSass({
     MESSAGE_ID: process.env.MESSAGE_ID,
     APP_ID: process.env.APP_ID,
   },
-  webpack(config) {
-    return config
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'src/style')]
   }
-})
+}

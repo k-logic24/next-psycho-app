@@ -49,9 +49,9 @@ const Edit = () => {
   return (
     <Layout
       title={`「${currentData.title}」の編集`}
-      description={'内容を書き換えて完了を押してください。'}
     >
       <EditForm
+        currentData={currentData}
         setTitle={setTitle}
         setQuestion={setQuestion}
         setNormal={setNormal}

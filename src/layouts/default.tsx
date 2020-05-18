@@ -7,16 +7,15 @@ import Sidebar from '@/layouts/Sidebar'
 type LayoutProps = {
   children: React.ReactNode;
   title: string;
-  description: string;
 };
 
-const Layout: React.FC<LayoutProps> = ({ children, title, description }) => {
+const Layout: React.FC<LayoutProps> = ({ children, title }) => {
   return (
     <>
       <Sidebar />
       <div className="main">
         <Container fluid>
-          <Header title={title} description={description} />
+          <Header title={title} />
           {children}
         </Container>
       </div>

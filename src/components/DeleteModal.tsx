@@ -12,8 +12,22 @@ const DeleteModal: React.FC<ModalProps> = ({
 }) => {
   const handleClickDelete = () => {
     setModalShow(false)
-    deleteData(targetData[0].id)
-    fetchData().then((res) => setData(res))
+
+    const deletePromise = new Promise((resolve) => {
+      if (targetData[0].id) {
+        deleteData(targetData[0].id)
+      }
+      setTimeout(() => {
+        resolve()
+      }, 500)
+    })
+
+    deletePromise.then(() => {
+      fetchData()
+        .then((res) =>
+          setData(res)
+        )
+    })
   }
 
   return (

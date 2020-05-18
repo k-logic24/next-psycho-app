@@ -23,10 +23,7 @@ const Id = () => {
 
   return (
     <>
-      <Layout
-        title={currentData.title}
-        description={'問題をみて回答ボタンを押してください。'}
-      >
+      <Layout title={currentData.title}>
         {currentData.question}
         {currentData.normal}
         {currentData.abnormal}

@@ -1,28 +1,23 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { Form, Button } from 'react-bootstrap'
 
-import { DataProps, FormProps } from '@/types'
-import { RootState } from '@/store'
+import { FormProps } from '@/types'
 
 const EditForm: React.FC<FormProps> = ({
+  currentData,
   setTitle,
   setQuestion,
   setNormal,
   setAbnormal,
   handleClickEdit,
 }) => {
-  const currentData = useSelector<RootState, DataProps>(
-    (state) => state.select
-  )
-
   return (
     <>
       <Form.Group controlId="title">
         <Form.Label className="font-weight-bold">タイトル</Form.Label>
         <Form.Control
           type="text"
-          defaultValue={currentData.title}
+          value={currentData && currentData.title}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setTitle(e.target.value)
           }
@@ -32,7 +27,7 @@ const EditForm: React.FC<FormProps> = ({
         <Form.Label className="font-weight-bold">内容</Form.Label>
         <Form.Control
           as="textarea"
-          defaultValue={currentData.question}
+          value={currentData && currentData.question}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             setQuestion(e.target.value)
           }
@@ -42,7 +37,7 @@ const EditForm: React.FC<FormProps> = ({
         <Form.Label className="font-weight-bold">一般回答</Form.Label>
         <Form.Control
           as="textarea"
-          defaultValue={currentData.normal}
+          value={currentData && currentData.normal}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             setNormal(e.target.value)
           }
@@ -52,7 +47,7 @@ const EditForm: React.FC<FormProps> = ({
         <Form.Label className="font-weight-bold">サイコパス回答</Form.Label>
         <Form.Control
           as="textarea"
-          defaultValue={currentData.abnormal}
+          value={currentData && currentData.abnormal}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             setAbnormal(e.target.value)
           }

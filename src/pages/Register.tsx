@@ -28,7 +28,7 @@ const Register: React.FC<FormProps> = () => {
   }
 
   return (
-    <Layout title="問題登録" description="各項目を記入して登録が可能です。">
+    <Layout title="問題登録">
       <div className="content-box">
         <RegisterForm
           setTitle={setTitle}

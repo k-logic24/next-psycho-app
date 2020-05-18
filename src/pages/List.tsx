@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { ListGroup, Row, Col, Button } from 'react-bootstrap'
+import { Row, Col, Button } from 'react-bootstrap'
+import classnames from 'classnames'
 
 import { fetchData } from '@/api'
 import { DataProps } from '@/types'
@@ -17,29 +18,31 @@ const List = () => {
   const [targetData, setTargetData] = useState<DataProps[]>([defaultValue])
   const [modalShow, setModalShow] = useState(false)
   const [data, setData] = useState<DataProps[]>([])
+  const classList = (index: number) =>
+    classnames('p-2', {
+      'bg-light': index % 2 !== 0
+    })
 
   useEffect(() => {
     fetchData().then((res) => setData(res))
-  }, [setData])
+  }, [fetchData, setData])
 
   const handleClickModal = (target: EventTarget) => {
     if (target instanceof HTMLButtonElement) {
       const filterData = data.filter((item) => item.id === target.value)
+      console.log(filterData)
       setTargetData(filterData)
       setModalShow(true)
     }
   }
 
   return (
-    <Layout
-      title="問題一覧"
-      description={'問題から一般回答とサイコパスの思考を知ることができます。'}
-    >
+    <Layout title="問題一覧">
       <div className="content-box">
         {data.length ? (
-          <ListGroup>
-            {data.map((item: DataProps) => (
-              <ListGroup.Item key={item.id}>
+          <ul className="mb-0">
+            {data.map((item: DataProps, index: number) => (
+              <li key={item.id} className={classList(index)}>
                 <Row className="justify-content-between">
                   <Col className="my-sm-auto" sm={6}>
                     <p className="mb-sm-0 font-weight-bold">{item.title}</p>
@@ -74,9 +77,9 @@ const List = () => {
                     />
                   </Col>
                 </Row>
-              </ListGroup.Item>
+              </li>
             ))}
-          </ListGroup>
+          </ul>
         ) : (
           <p className="mb-0">問題がありません</p>
         )}

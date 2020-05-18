@@ -8,7 +8,7 @@ type menuProps = {
   id: number;
   title: string;
   href: string;
-};
+}
 
 const Sidebar = () => {
   const router = useRouter()
@@ -17,7 +17,7 @@ const Sidebar = () => {
       <ul className="sidebar-list">
         {menus.map((item: menuProps, index: number) => (
           <li key={index} className="sidebar-list__item">
-            <Link href={item.href}>
+            <Link prefetch href={item.href}>
               <a
                 className={
                   router.pathname === `${item.href}`
