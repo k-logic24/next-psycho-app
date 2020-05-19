@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Head from 'next/head'
 import { Row, Col, Button } from 'react-bootstrap'
 import classnames from 'classnames'
 
@@ -36,6 +37,11 @@ const List = () => {
   }
 
   return (
+    <>
+    <Head>
+      <title>psycho-app | 問題一覧</title>
+      <meta name="description" content="サイコパスアプリ 問題一覧ページ"/>
+    </Head>
     <Layout title="問題一覧">
       <div className="content-box">
         {data.length ? (
@@ -83,7 +89,8 @@ const List = () => {
           <p className="mb-0">問題がありません</p>
         )}
       </div>
-    </Layout>
+      </Layout>
+      </>
   )
 }
 

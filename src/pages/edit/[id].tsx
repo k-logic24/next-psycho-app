@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Head from 'next/head'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
 
@@ -47,20 +48,26 @@ const Edit = () => {
   }
 
   return (
-    <Layout
-      title={`「${currentData.title}」の編集`}
-    >
-      <div className="content-box">
-        <EditForm
-          currentData={currentData}
-          setTitle={setTitle}
-          setQuestion={setQuestion}
-          setNormal={setNormal}
-          setAbnormal={setAbnormal}
-          handleClickEdit={handleClickEdit}
-        />
-       </div>
-    </Layout>
+    <>
+      <Head>
+        <title>psycho-app | {currentData.title}編集</title>
+        <meta name="description" content="サイコパスアプリ 問題編集ページ"/>
+      </Head>
+      <Layout
+        title={`「${currentData.title}」の編集`}
+      >
+        <div className="content-box">
+          <EditForm
+            currentData={currentData}
+            setTitle={setTitle}
+            setQuestion={setQuestion}
+            setNormal={setNormal}
+            setAbnormal={setAbnormal}
+            handleClickEdit={handleClickEdit}
+          />
+        </div>
+      </Layout>
+    </>
   )
 }
 

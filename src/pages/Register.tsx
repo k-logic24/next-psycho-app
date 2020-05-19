@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import Layout from '@/layouts/default'
@@ -28,17 +29,23 @@ const Register: React.FC<FormProps> = () => {
   }
 
   return (
-    <Layout title="問題登録">
-      <div className="content-box">
-        <RegisterForm
-          setTitle={setTitle}
-          setQuestion={setQuestion}
-          setNormal={setNormal}
-          setAbnormal={setAbnormal}
-          handleClickAdd={handleClickAdd}
-        />
-      </div>
-    </Layout>
+    <>
+      <Head>
+      <title>psycho-app | 問題登録</title>
+      <meta name="description" content="サイコパスアプリ 問題登録ページ"/>
+      </Head>
+      <Layout title="問題登録">
+        <div className="content-box">
+          <RegisterForm
+            setTitle={setTitle}
+            setQuestion={setQuestion}
+            setNormal={setNormal}
+            setAbnormal={setAbnormal}
+            handleClickAdd={handleClickAdd}
+          />
+        </div>
+      </Layout>
+    </>
   )
 }
 

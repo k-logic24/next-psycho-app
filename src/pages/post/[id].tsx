@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Head from 'next/head'
 import { Button } from 'react-bootstrap'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
@@ -30,6 +31,10 @@ const Id = () => {
 
   return (
     <>
+      <Head>
+        <title>psycho-app | {currentData.title}</title>
+        <meta name="description" content="サイコパスアプリ 問題詳細ページ"/>
+      </Head>
       <Layout title={currentData.title}>
         <div className="content-box">
           <p className="mb-5">{currentData.question}</p>
@@ -51,7 +56,7 @@ const Id = () => {
               <p className="mb-0">{currentData.abnormal}</p>
             </section>
             <Link href="/list">
-              <a>一覧へもどる</a>
+              <Button variant="secondary">一覧へもどる</Button>
             </Link>
             </>
           }

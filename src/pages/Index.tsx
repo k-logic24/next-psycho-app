@@ -7,11 +7,13 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>My page title</title>
-        <meta name="description" content="サイコパスアプリ"/>
+        <title>psycho-app | ホーム</title>
+        <meta name="description" content="サイコパスアプリ ホーム"/>
       </Head>
       <Layout title="ホーム">
-        <p>ここになにか入れる</p>
+        <p>ようこそ。<br/>こちらはサイコパス診断アプリです。</p>
+        <p>問題一覧からサイコパス問題が閲覧できます。<br/>また、編集も可能です。</p>
+        <p>問題登録から問題を作成し、登録できます。</p>
       </Layout>
     </>
   )
