@@ -17,7 +17,7 @@ const EditForm: React.FC<FormProps> = ({
         <Form.Label className="font-weight-bold">タイトル</Form.Label>
         <Form.Control
           type="text"
-          value={currentData && currentData.title}
+          defaultValue={currentData && currentData.title}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setTitle(e.target.value)
           }
@@ -27,7 +27,7 @@ const EditForm: React.FC<FormProps> = ({
         <Form.Label className="font-weight-bold">内容</Form.Label>
         <Form.Control
           as="textarea"
-          value={currentData && currentData.question}
+          defaultValue={currentData && currentData.question}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             setQuestion(e.target.value)
           }
@@ -37,7 +37,7 @@ const EditForm: React.FC<FormProps> = ({
         <Form.Label className="font-weight-bold">一般回答</Form.Label>
         <Form.Control
           as="textarea"
-          value={currentData && currentData.normal}
+          defaultValue={currentData && currentData.normal}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             setNormal(e.target.value)
           }
@@ -47,7 +47,7 @@ const EditForm: React.FC<FormProps> = ({
         <Form.Label className="font-weight-bold">サイコパス回答</Form.Label>
         <Form.Control
           as="textarea"
-          value={currentData && currentData.abnormal}
+          defaultValue={currentData && currentData.abnormal}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             setAbnormal(e.target.value)
           }

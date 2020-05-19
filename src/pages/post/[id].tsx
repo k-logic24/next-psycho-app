@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { Button } from 'react-bootstrap'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
@@ -31,7 +32,7 @@ const Id = () => {
     <>
       <Layout title={currentData.title}>
         <div className="content-box">
-          <p>{currentData.question}</p>
+          <p className="mb-5">{currentData.question}</p>
           <Button
             className={btnState}
             variant="secondary"
@@ -41,8 +42,17 @@ const Id = () => {
           </Button>
           {isShow &&
             <>
-              <p>{currentData.normal}</p>
-              <p>{currentData.abnormal}</p>
+            <section className="mb-4">
+              <h2 className="text-primary">一般回答</h2>
+              <p className="mb-0">{currentData.normal}</p>
+            </section>
+            <section className="mb-4">
+              <h2 className="text-danger">サイコパス回答</h2>
+              <p className="mb-0">{currentData.abnormal}</p>
+            </section>
+            <Link href="/list">
+              <a>一覧へもどる</a>
+            </Link>
             </>
           }
         </div>
