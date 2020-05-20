@@ -1,43 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useRouter } from 'next/router'
 import { Form, Button } from 'react-bootstrap'
 
-import { DataProps, NewDataProps } from '@/types'
-import { RootState } from '@/store'
-import { editData } from '@/api'
+import { FormProps } from '@/types'
 
-const EditForm = () => {
-  const router = useRouter()
-  const { id } = router.query
-  const currentData = useSelector<RootState, DataProps>(
-    (state) => state.select
-  )
-  const [title, setTitle] = useState('')
-  const [question, setQuestion] = useState('')
-  const [normal, setNormal] = useState('')
-  const [abnormal, setAbnormal] = useState('')
-
-  useEffect(() => {
-    setTitle(currentData.title)
-    setQuestion(currentData.question)
-    setNormal(currentData.normal)
-    setAbnormal(currentData.abnormal)
-  }, [currentData])
-
-  const handleClickComplete = () => {
-    const newData: NewDataProps = {
-      title: title,
-      question: question,
-      normal: normal,
-      abnormal: abnormal,
-      id: id
-    }
-    editData(newData)
-
-    alert('更新しました')
-    router.push('/list')
-  }
+const EditForm: React.FC<FormProps> = ({
+  title,
+  question,
+  normal,
+  abnormal,
+  setTitle,
+  setQuestion,
+  setNormal,
+  setAbnormal,
+  handleClickEdit,
+}) => {
 
   return (
     <>
@@ -81,7 +57,7 @@ const EditForm = () => {
           }
         />
       </Form.Group>
-      <Button variant="primary" onClick={handleClickComplete}>
+      <Button variant="primary" onClick={handleClickEdit}>
         完了
       </Button>
     </>
