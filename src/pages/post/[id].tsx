@@ -27,7 +27,7 @@ const Id = () => {
     if (typeof id === 'string') {
       dispatch(thunkedFetch(id))
     }
-  }, [thunkedFetch])
+  }, [id])
 
   return (
     <>

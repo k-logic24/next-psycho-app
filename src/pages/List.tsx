@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import Link from 'next/link'
 import Head from 'next/head'
 import { Row, Col, Button } from 'react-bootstrap'
 import classnames from 'classnames'
 
 import { fetchData } from '@/api'
+import { thunkedFetch } from '@/store/action'
 import { DataProps } from '@/types'
 import Layout from '@/layouts/default'
 import DeleteModal from '@/components/DeleteModal'
 
 const List = () => {
+  const dispatch = useDispatch()
   const defaultValue = {
     title: '',
     question: '',
@@ -36,6 +39,10 @@ const List = () => {
     }
   }
 
+  const handleClickChangeData = (id: string) => {
+    dispatch(thunkedFetch(id))
+  }
+
   return (
     <>
     <Head>
@@ -60,7 +67,10 @@ const List = () => {
                     </Button>
                     <Button className="p-0 ml-2" variant="info">
                       <Link href="/edit/[id]" as={`/edit/${item.id}`}>
-                        <a className="d-block w-100 py-2 px-3">編集</a>
+                        <a
+                          className="d-block w-100 py-2 px-3"
+                          onClick={() => handleClickChangeData(item.id!)}
+                        >編集</a>
                       </Link>
                     </Button>
                     <Button

@@ -16,7 +16,8 @@ export const editData = (payload: NewDataProps) => {
 }
 
 export const fetchData = (): Promise<any> => {
-  return db
+  return new Promise(resolve => {
+    db
     .collection('information')
     .get()
     .then((querySnapShot) => {
@@ -36,8 +37,9 @@ export const fetchData = (): Promise<any> => {
         dataArray.push(dataObj)
       })
 
-      return dataArray
+      resolve(dataArray)
     })
+  })
 }
 
 export const selectData = (id: string): Promise<any> => {

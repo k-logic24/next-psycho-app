@@ -38,7 +38,6 @@ export type NewDataProps = {
 
 // form
 export type FormProps = {
-  currentData?: DataProps
   setTitle: React.Dispatch<React.SetStateAction<string>>
   setQuestion: React.Dispatch<React.SetStateAction<string>>
   setNormal: React.Dispatch<React.SetStateAction<string>>

@@ -1,23 +1,51 @@
-import React　from 'react'
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useRouter } from 'next/router'
 import { Form, Button } from 'react-bootstrap'
 
-import { FormProps } from '@/types'
+import { DataProps, NewDataProps } from '@/types'
+import { RootState } from '@/store'
+import { editData } from '@/api'
 
-const EditForm: React.FC<FormProps> = ({
-  currentData,
-  setTitle,
-  setQuestion,
-  setNormal,
-  setAbnormal,
-  handleClickEdit,
-}) => {
+const EditForm = () => {
+  const router = useRouter()
+  const { id } = router.query
+  const currentData = useSelector<RootState, DataProps>(
+    (state) => state.select
+  )
+  const [title, setTitle] = useState('')
+  const [question, setQuestion] = useState('')
+  const [normal, setNormal] = useState('')
+  const [abnormal, setAbnormal] = useState('')
+
+  useEffect(() => {
+    setTitle(currentData.title)
+    setQuestion(currentData.question)
+    setNormal(currentData.normal)
+    setAbnormal(currentData.abnormal)
+  }, [currentData])
+
+  const handleClickComplete = () => {
+    const newData: NewDataProps = {
+      title: title,
+      question: question,
+      normal: normal,
+      abnormal: abnormal,
+      id: id
+    }
+    editData(newData)
+
+    alert('更新しました')
+    router.push('/list')
+  }
+
   return (
     <>
       <Form.Group controlId="title">
         <Form.Label className="font-weight-bold">タイトル</Form.Label>
         <Form.Control
           type="text"
-          defaultValue={currentData && currentData.title}
+          defaultValue={title}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setTitle(e.target.value)
           }
@@ -27,7 +55,7 @@ const EditForm: React.FC<FormProps> = ({
         <Form.Label className="font-weight-bold">内容</Form.Label>
         <Form.Control
           as="textarea"
-          defaultValue={currentData && currentData.question}
+          defaultValue={question}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             setQuestion(e.target.value)
           }
@@ -37,7 +65,7 @@ const EditForm: React.FC<FormProps> = ({
         <Form.Label className="font-weight-bold">一般回答</Form.Label>
         <Form.Control
           as="textarea"
-          defaultValue={currentData && currentData.normal}
+          defaultValue={normal}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             setNormal(e.target.value)
           }
@@ -47,13 +75,13 @@ const EditForm: React.FC<FormProps> = ({
         <Form.Label className="font-weight-bold">サイコパス回答</Form.Label>
         <Form.Control
           as="textarea"
-          defaultValue={currentData && currentData.abnormal}
+          defaultValue={abnormal}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             setAbnormal(e.target.value)
           }
         />
       </Form.Group>
-      <Button variant="primary" onClick={handleClickEdit}>
+      <Button variant="primary" onClick={handleClickComplete}>
         完了
       </Button>
     </>
