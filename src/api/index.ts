@@ -43,12 +43,14 @@ export const fetchData = (): Promise<any> => {
 }
 
 export const selectData = (id: string): Promise<any> => {
-  return db
-    .collection('information')
-    .doc(id)
-    .get()
-    .then((result) => result.data())
-    .catch((error) => {
-      console.log('failed...', error)
-    })
+  return new Promise(resolve => {
+    db
+      .collection('information')
+      .doc(id)
+      .get()
+      .then((result) => resolve(result.data()))
+      .catch((error) => {
+        console.log('failed...', error)
+      })
+  })
 }
