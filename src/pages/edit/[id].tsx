@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import Head from 'next/head'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 
 import { editData } from '@/api'

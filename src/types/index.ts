@@ -28,10 +28,10 @@ export type DataProps = {
 }
 
 export type NewDataProps = {
-  title?: string
-  question?: string
-  normal?: string
-  abnormal?: string
+  title: string
+  question: string
+  normal: string
+  abnormal: string
   // TODO: これはやばい
   id: string | string[] | undefined
 }
