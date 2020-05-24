@@ -32,29 +32,11 @@ export type NewDataProps = {
   question: string
   normal: string
   abnormal: string
-  // TODO: これはやばい
-  id: string | string[] | undefined
-}
-
-// form
-export type FormProps = {
-  title?: string
-  question?: string
-  normal?: string
-  abnormal?: string
-  setTitle: React.Dispatch<React.SetStateAction<string>>
-  setQuestion: React.Dispatch<React.SetStateAction<string>>
-  setNormal: React.Dispatch<React.SetStateAction<string>>
-  setAbnormal: React.Dispatch<React.SetStateAction<string>>
-  handleChangeData?: (value: string, target: string) => void
-  handleClickAdd?: () => void
-  handleClickEdit?: () => void
 }
 
 // modal
 export type ModalProps = {
-  targetData: DataProps[]
+  targetData: DataProps
   show: boolean
   setModalShow: React.Dispatch<React.SetStateAction<boolean>>
-  setData: React.Dispatch<React.SetStateAction<DataProps[]>>
 }

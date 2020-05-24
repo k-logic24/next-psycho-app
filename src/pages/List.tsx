@@ -1,46 +1,38 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 import { Row, Col, Button } from 'react-bootstrap'
 import classnames from 'classnames'
+import { useCollection } from '@nandorojo/swr-firestore'
 
-import { fetchData } from '@/api'
-import { thunkedFetch } from '@/store/action'
-import { DataProps } from '@/types'
 import Layout from '@/layouts/default'
 import DeleteModal from '@/components/DeleteModal'
+import { DataProps } from '@/types'
 
 const List = () => {
-  const dispatch = useDispatch()
-  const defaultValue = {
+  // firestore data
+  const { data } = useCollection<DataProps>('information')
+
+  const [targetData, setTargetData] = useState<DataProps[]>([{
     title: '',
     question: '',
     normal: '',
     abnormal: '',
-  }
-  const [targetData, setTargetData] = useState<DataProps[]>([defaultValue])
+  }])
   const [modalShow, setModalShow] = useState(false)
-  const [data, setData] = useState<DataProps[]>([])
   const classList = (index: number) =>
     classnames('p-2', {
       'bg-light': index % 2 !== 0
     })
 
-  useEffect(() => {
-    fetchData().then((res) => setData(res))
-  }, [fetchData, setData])
-
-  const handleClickModal = (target: EventTarget) => {
+  const handleClickDelete = (target: EventTarget) => {
     if (target instanceof HTMLButtonElement) {
-      const filterData = data.filter((item) => item.id === target.value)
-      setTargetData(filterData)
-      setModalShow(true)
+      if (data) {
+        const filterData = data.filter((item) => item.id === target.value)
+        setTargetData(filterData)
+        setModalShow(true)
+      }
     }
-  }
-
-  const handleClickChangeData = (id: string) => {
-    dispatch(thunkedFetch(id))
   }
 
   return (
@@ -51,9 +43,9 @@ const List = () => {
     </Head>
     <Layout title="問題一覧">
       <div className="content-box">
-        {data.length ? (
+        {data && data.length ? (
           <ul className="mb-0">
-            {data.map((item: DataProps, index: number) => (
+            {data.map((item: any, index: number) => (
               <li key={item.id} className={classList(index)}>
                 <Row className="justify-content-between">
                   <Col className="my-sm-auto" sm={6}>
@@ -67,18 +59,16 @@ const List = () => {
                     </Button>
                     <Button className="p-0 ml-2" variant="info">
                       <Link href="/edit/[id]" as={`/edit/${item.id}`}>
-                        <a
-                          className="d-block w-100 py-2 px-3"
-                          onClick={() => handleClickChangeData(item.id!)}
+                        <a className="d-block w-100 py-2 px-3"
                         >編集</a>
                       </Link>
                     </Button>
                     <Button
-                      value={item.id}
                       className="ml-2 py-2 px-3"
                       variant="danger"
+                      value={item.id}
                       onClick={(e: React.FormEvent<HTMLButtonElement>) =>
-                        handleClickModal(e.target)
+                        handleClickDelete(e.target)
                       }
                     >
                       削除
@@ -88,7 +78,6 @@ const List = () => {
                       targetData={targetData}
                       show={modalShow}
                       setModalShow={setModalShow}
-                      setData={setData}
                     />
                   </Col>
                 </Row>

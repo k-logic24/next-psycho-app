@@ -1,21 +1,21 @@
 import React from 'react'
 import { AppProps } from 'next/app'
-import { Provider } from 'react-redux'
 // @ts-ignore
 import NextNprogress from 'nextjs-progressbar'
+import 'firebase/firestore'
+import { Fuego, FuegoProvider } from '@nandorojo/swr-firestore'
 import 'bootstrap/scss/bootstrap.scss'
+
+import firebaseConfig from '@/firebase/firebaseConfig'
 import '@/style/style.scss'
 
-import store from '@/store'
-
+const fuego = new Fuego(firebaseConfig)
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <>
-      <Provider store={store}>
-        <NextNprogress />
-        <Component {...pageProps} />
-      </Provider>
-    </>
+    <FuegoProvider fuego={fuego}>
+      <NextNprogress />
+      <Component {...pageProps} />
+    </FuegoProvider>
   )
 }
 
