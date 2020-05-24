@@ -1,17 +1,24 @@
 import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
 
-import db from '@/firebase/firebaseInit'
 import { ModalProps } from '@/types'
+import { fetchData, deleteData } from '@/api'
 
 const DeleteModal: React.FC<ModalProps> = ({
+  setData,
   targetData,
   show,
   setModalShow,
 }) => {
-  const handleClickDelete = () => {
-    // TODO: deleteはfirestoreにないの？？
-    db.collection('information').doc(targetData[0].id).delete()
+  const handleClickDelete = async() => {
+    await
+      deleteData(targetData[0].id!)
+    await
+      fetchData()
+        .then(res => {
+          setData(res)
+        })
+
     setModalShow(false)
   }
 

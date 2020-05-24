@@ -1,29 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 import { Row, Col, Button } from 'react-bootstrap'
 import classnames from 'classnames'
-import { useCollection } from '@nandorojo/swr-firestore'
 
 import Layout from '@/layouts/default'
 import DeleteModal from '@/components/DeleteModal'
 import { DataProps } from '@/types'
+import {fetchData} from '@/api'
+
+const defaultData = {
+  title: '',
+  question: '',
+  normal: '',
+  abnormal: '',
+}
 
 const List = () => {
-  // firestore data
-  const { data } = useCollection<DataProps>('information')
-
-  const [targetData, setTargetData] = useState<DataProps[]>([{
-    title: '',
-    question: '',
-    normal: '',
-    abnormal: '',
-  }])
+  const [data, setData] = useState<DataProps[]>([defaultData])
+  const [targetData, setTargetData] = useState<DataProps[]>([defaultData])
   const [modalShow, setModalShow] = useState(false)
+
   const classList = (index: number) =>
     classnames('p-2', {
       'bg-light': index % 2 !== 0
     })
+
+  useEffect(() => {
+    fetchData()
+      .then((res) => {
+        setData(res)
+      })
+  }, [])
 
   const handleClickDelete = (target: EventTarget) => {
     if (target instanceof HTMLButtonElement) {
@@ -43,10 +51,10 @@ const List = () => {
     </Head>
     <Layout title="問題一覧">
       <div className="content-box">
-        {data && data.length ? (
+        { data.length ? (
           <ul className="mb-0">
             {data.map((item: any, index: number) => (
-              <li key={item.id} className={classList(index)}>
+              <li key={index} className={classList(index)}>
                 <Row className="justify-content-between">
                   <Col className="my-sm-auto" sm={6}>
                     <p className="mb-sm-0 font-weight-bold">{item.title}</p>
@@ -75,6 +83,7 @@ const List = () => {
                     </Button>
 
                     <DeleteModal
+                      setData={setData}
                       targetData={targetData}
                       show={modalShow}
                       setModalShow={setModalShow}

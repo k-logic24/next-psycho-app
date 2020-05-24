@@ -1,14 +1,13 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { Form, Button } from 'react-bootstrap'
 import { useDocument } from '@nandorojo/swr-firestore'
 
 import { DataProps, NewDataProps } from '@/types'
-import { RootState } from '@/store'
 import Layout from '@/layouts/default'
 
-const Edit: React.FC<any> = () => {
+const Edit = () => {
   // routerからidをとってくる
   const router = useRouter()
   const { id } = router.query

@@ -6,9 +6,9 @@ import { Form, Button } from 'react-bootstrap'
 import { useCollection } from '@nandorojo/swr-firestore'
 
 import Layout from '@/layouts/default'
-import { FormProps, DataProps, NewDataProps } from '@/types'
+import { DataProps, NewDataProps } from '@/types'
 
-const Register: React.FC<FormProps> = () => {
+const Register = () => {
   const [isTitleValidate, setTitleValidate] = useState(false)
   const [isQuestionValidate, setQuestionValidate] = useState(false)
   const [isNormalValidate, setNormalValidate] = useState(false)
@@ -39,22 +39,22 @@ const Register: React.FC<FormProps> = () => {
 
   // validate
   const onSubmit = (data: DataProps) => {
-    // // validation
-    // data.title === '' ? setTitleValidate(true) : setTitleValidate(false)
-    // data.question === ''
-    //   ? setQuestionValidate(true)
-    //   : setQuestionValidate(false)
-    // data.normal === '' ? setNormalValidate(true) : setNormalValidate(false)
-    // data.abnormal === ''
-    //   ? setAbnormalValidate(true)
-    //   : setAbnormalValidate(false)
+    data.title === ''
+      ? setTitleValidate(true)
+      : setTitleValidate(false)
+    data.question === ''
+      ? setQuestionValidate(true)
+      : setQuestionValidate(false)
+    data.normal === ''
+      ? setNormalValidate(true)
+      : setNormalValidate(false)
+    data.abnormal === ''
+      ? setAbnormalValidate(true)
+      : setAbnormalValidate(false)
 
-    // // 通ったらhandleclickadd
-    // if (data.title && data.question && data.normal && data.abnormal !== '') {
-    //   handleClickAdd && handleClickAdd()
-    // }
-
-    handleClickAdd()
+    if (data.title && data.question && data.normal && data.abnormal !== '') {
+      handleClickAdd && handleClickAdd()
+    }
   }
 
   return (
