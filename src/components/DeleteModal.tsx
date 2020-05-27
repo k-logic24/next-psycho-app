@@ -13,11 +13,11 @@ const DeleteModal: React.FC<ModalProps> = ({
   const handleClickDelete = async() => {
     await
       deleteData(targetData[0].id!)
-    await
-      fetchData()
-        .then(res => {
-          setData(res)
-        })
+
+    fetchData()
+      .then(res => {
+        setData(res)
+      })
 
     setModalShow(false)
   }
