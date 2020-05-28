@@ -24,12 +24,12 @@ const Id = () => {
   return (
     <>
       <Head>
-        <title>psycho-app | {data!.title}</title>
+        <title>psycho-app | {data?.title}</title>
         <meta name="description" content="サイコパスアプリ 問題詳細ページ"/>
       </Head>
-      <Layout title={data!.title}>
+      <Layout title={data?.title}>
         <div className="content-box">
-          <p className="mb-5">{data!.question}</p>
+          <p className="mb-5">{data?.question}</p>
           <Button
             className={btnState}
             variant="secondary"
@@ -41,11 +41,11 @@ const Id = () => {
             <>
             <section className="mb-4">
               <h2 className="text-primary">一般回答</h2>
-              <p className="mb-0">{data!.normal}</p>
+              <p className="mb-0">{data?.normal}</p>
             </section>
             <section className="mb-4">
               <h2 className="text-danger">サイコパス回答</h2>
-              <p className="mb-0">{data!.abnormal}</p>
+              <p className="mb-0">{data?.abnormal}</p>
             </section>
             <Link href="/list">
               <Button variant="secondary">一覧へもどる</Button>
