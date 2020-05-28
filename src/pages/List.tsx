@@ -7,7 +7,7 @@ import classnames from 'classnames'
 import Layout from '@/layouts/default'
 import DeleteModal from '@/components/DeleteModal'
 import { DataProps } from '@/types'
-import {fetchData} from '@/api'
+import { fetchData } from '@/api'
 
 const defaultData = {
   title: '',
@@ -17,7 +17,7 @@ const defaultData = {
 }
 
 const List = () => {
-  const [data, setData] = useState<DataProps[]>([defaultData])
+  const [data, setData] = useState<DataProps[]>([])
   const [targetData, setTargetData] = useState<DataProps[]>([defaultData])
   const [modalShow, setModalShow] = useState(false)
 

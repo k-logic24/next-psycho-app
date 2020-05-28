@@ -19,8 +19,9 @@ export const fetchData = (): Promise<DataProps[]> => {
             id: info.id,
           }
           dataArray.push(dataObj)
-          resolve(dataArray)
         })
+
+        resolve(dataArray)
       })
   })
 }
