@@ -31,10 +31,10 @@ const Register = () => {
   }
 
   const handleClickAdd = async() => {
-    alert('登録しました')
-
     // @ts-ignore
     await add(newData)
+    alert('登録しました')
+
     router.push('/list')
   }
 

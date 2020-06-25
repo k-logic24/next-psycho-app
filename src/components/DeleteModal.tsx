@@ -16,7 +16,9 @@ const DeleteModal: React.FC<ModalProps> = ({
       await
         deleteData(targetId)
       await
-        fetchData().then(res => setData(res))
+        setTimeout(() => {
+          fetchData().then(res => setData(res))
+        }, 500)
       setModalShow(false)
     } else {
       throw new Error('削除できませんでした')
