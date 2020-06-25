@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 import { Row, Col, Button } from 'react-bootstrap'
@@ -6,8 +6,8 @@ import classnames from 'classnames'
 
 import Layout from '@/layouts/default'
 import DeleteModal from '@/components/DeleteModal'
-import db from '@/firebase/firebaseInit'
 import { DataProps } from '@/types'
+import { fetchData } from '@/api'
 
 const defaultData = {
   title: '',
@@ -16,34 +16,15 @@ const defaultData = {
   abnormal: '',
 }
 
-export async function getServerSideProps() {
-  return await db
-    .collection('information')
-    .get()
-    .then((querySnapShot) => {
-      const datas: DataProps[] = []
-
-      querySnapShot.forEach((info) => {
-        const base = info.data()
-        const dataObj = {
-          title: base.title,
-          question: base.question,
-          normal: base.normal,
-          abnormal: base.abnormal,
-          id: info.id,
-        }
-        datas.push(dataObj)
-      })
-
-      return { props: { datas } }
-    })
-}
-
 // TODO: any
-const List: React.FC<any> = ({ datas }) => {
-  const [data, setData] = useState<DataProps[]>(datas)
+const List = () => {
+  const [data, setData] = useState<DataProps[]>([])
   const [targetData, setTargetData] = useState<DataProps[]>([defaultData])
   const [modalShow, setModalShow] = useState(false)
+
+  useEffect(() => {
+    fetchData().then(res => setData(res))
+  }, [])
 
   const classList = (index: number) =>
     classnames('p-2', {
