@@ -10,17 +10,16 @@ const DeleteModal: React.FC<ModalProps> = ({
   show,
   setModalShow,
 }) => {
-  const handleClickDelete = async() => {
-    await
-      deleteData(targetData[0].id!)
-    setTimeout(() => {
-      fetchData()
-        .then(res => {
-          setData(res)
-        })
-    }, 100)
-
-    setModalShow(false)
+  const handleClickDelete = async () => {
+    const targetId = targetData[0].id
+    if (targetId) {
+      await
+        deleteData(targetId)
+      fetchData().then(res => setData(res))
+      setModalShow(false)
+    } else {
+      throw new Error('削除できませんでした')
+    }
   }
 
   return (

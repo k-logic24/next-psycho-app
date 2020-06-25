@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Container } from 'react-bootstrap'
 
 import Title from '@/layouts/Title'
@@ -6,7 +6,7 @@ import Sidebar from '@/layouts/Sidebar'
 
 type LayoutProps = {
   children: React.ReactNode
-  // TODO: edit postでoptionalになってるため...
+  // TODO: any
   title: any
 }
 

@@ -23,7 +23,7 @@ const Edit = () => {
   const [normal, setNormal] = useState(data?.normal)
   const [abnormal, setAbnormal] = useState(data?.abnormal)
 
-  const handleClickEdit = () => {
+  const handleClickEdit = async() => {
     if (title && question && normal && abnormal) {
       const newData: NewDataProps = {
         title: title,
@@ -31,9 +31,9 @@ const Edit = () => {
         normal: normal,
         abnormal: abnormal,
       }
-      update(newData)
-
       alert('更新しました')
+
+      await update(newData)
       router.push('/list')
     }
   }

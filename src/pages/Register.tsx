@@ -29,30 +29,32 @@ const Register = () => {
     normal: normal,
     abnormal: abnormal,
   }
-  const handleClickAdd = () => {
-    // @ts-ignore
-    add(newData)
 
-    router.push('/list')
+  const handleClickAdd = async() => {
     alert('登録しました')
+
+    // @ts-ignore
+    await add(newData)
+    router.push('/list')
   }
 
   // validate
   const onSubmit = (data: DataProps) => {
-    data.title === ''
+    const { title, question, normal, abnormal } = data
+    title === ''
       ? setTitleValidate(true)
       : setTitleValidate(false)
-    data.question === ''
+    question === ''
       ? setQuestionValidate(true)
       : setQuestionValidate(false)
-    data.normal === ''
+    normal === ''
       ? setNormalValidate(true)
       : setNormalValidate(false)
-    data.abnormal === ''
+    abnormal === ''
       ? setAbnormalValidate(true)
       : setAbnormalValidate(false)
 
-    if (data.title && data.question && data.normal && data.abnormal !== '') {
+    if (title && question && normal && abnormal !== '') {
       handleClickAdd && handleClickAdd()
     }
   }
